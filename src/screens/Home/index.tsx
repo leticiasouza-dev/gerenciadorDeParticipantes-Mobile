@@ -9,6 +9,10 @@ export function Home(){
         alert('você clicou')
     }
 
+    function handleParticipantRemove(name: string){
+        alert( `você removeu + ${name}`)
+    }
+
     return(
         <View style={styles.container}>
             <Text style={styles.eventName}>Nome do evento</Text>
@@ -26,8 +30,8 @@ export function Home(){
                 </TouchableOpacity>
             </View>
 
-            <Participant/>
-            <Participant/>
+            <Participant nomeParticpante='lele linda' onRemove={() => handleParticipantRemove('lele')}/>
+            <Participant nomeParticpante="letícia souza" onRemove={() => handleParticipantRemove('lindaaa')}/>
         </View>
     )
 }
