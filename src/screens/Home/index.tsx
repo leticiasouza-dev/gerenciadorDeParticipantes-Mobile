@@ -1,4 +1,4 @@
-import { Text, View, TextInput, TouchableOpacity, ScrollView} from "react-native"
+import { Text, View, TextInput, TouchableOpacity, ScrollView, Alert, FlatList} from "react-native"
 import {styles} from './styles'
 
 import { Participant } from "../../components/Participant"
@@ -8,11 +8,23 @@ export function Home(){
 
 
     function handleParticipantAdd(){
-        alert('você clicou')
+        if(participants.includes('lele')){
+            return Alert.alert('Participante Existe','já existe um participante com esse nome ')
+        }
     }
 
     function handleParticipantRemove(name: string){
-        alert( `você removeu + ${name}`)
+        Alert.alert('Remover', `Remover o participante ${name}`, [
+            { // primeiro botão com o sim
+                text: 'Sim',
+                onPress: () => Alert.alert('deletado') // quando clicar em sim, exibirá outro alert com a mensagem deletado
+            },
+            { // segundo botão
+                text: 'Não',
+                style: 'cancel'
+            }
+
+        ]);
     }
 
     return(
@@ -32,14 +44,32 @@ export function Home(){
                 </TouchableOpacity>
             </View>
 
-        <ScrollView>
+        {/* <ScrollView>
             {
                 participants.map((partip) => (
-                    <Participant key={partip} nomeParticipante={partip} />
+                    <Participant key={partip} nomeParticipante={partip} onRemove={handleParticipantRemove}/>
                 ))
             }
 
-        </ScrollView>
+        </ScrollView> */}
+
+        <FlatList 
+            data={participants}
+            keyExtractor={item => item}
+            renderItem={({item}) => (
+                <Participant 
+                    key={item}  
+                    nomeParticipante={item}
+                    onRemove={() => handleParticipantRemove(item)}
+                />
+            )}
+            showsVerticalScrollIndicator={false}
+            ListEmptyComponent={() => (
+                <Text>
+                    nenhum cadastrado
+                </Text>
+            )}
+        />
         </View>
     )
 }
