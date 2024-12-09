@@ -35,12 +35,9 @@ export function Home(){
         <ScrollView>
             {
                 participants.map((partip) => (
-                    <Participant key={partip} nomeParticipante={partip}/>
+                    <Participant key={partip} nomeParticipante={partip} />
                 ))
             }
-
-            {/* <Participant nomeParticpante='lele linda' onRemove={() => handleParticipantRemove('lele')}/>
-            <Participant nomeParticpante="letícia souza" onRemove={() => handleParticipantRemove('lindaaa')}/> */}
 
         </ScrollView>
         </View>

@@ -11,7 +11,7 @@ export const styles = StyleSheet.create({
     },
     name: {
         flex: 1,
-        color: 'fff',
+        color: '#fff',
         fontSize: 16,
         marginLeft: 16,
     },
